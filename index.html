@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fine-tuning of Large Language Models for Domain-Specific Cybersecurity Knowledge</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-title">LLM Cybersecurity</div>
+            <div class="nav-links">
+                <a href="#abstract" class="nav-link">Abstract</a>
+                <a href="#methodology" class="nav-link">Methodology</a>
+                <a href="#results" class="nav-link">Results</a>
+                <a href="#conclusion" class="nav-link">Conclusion</a>
+                <a href="assets/paper.pdf" class="nav-external">[PDF]</a>
+                <a href="https://github.com/1000111-1000111/llm-cybersecurity" class="nav-external" target="_blank">[Code]</a>
+            </div>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">Fine-tuning of Large Language Models for Domain-Specific Cybersecurity Knowledge</h1>
+            <p class="hero-author">Yuan Huang</p>
+            <p class="hero-affiliation">Shenzhen College of International Education</p>
+            <div class="hero-buttons">
+                <a href="assets/paper.pdf" class="btn btn-primary">View Paper</a>
+                <a href="https://github.com/1000111-1000111/llm-cybersecurity" class="btn btn-secondary" target="_blank">View Code</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Abstract Section -->
+    <section id="abstract" class="section">
+        <div class="container">
+            <h2 class="section-title">Abstract</h2>
+            <div class="abstract-content">
+                <p>Large Language Models (LLMs) are powerful but often struggle with specialized domains like cybersecurity. This research explores fine-tuning the Llama 3 model to embed cybersecurity knowledge. We compare three methods: Supervised Fine-Tuning (SFT), Low-Rank Adaptation (LoRA), and Quantized Low-Rank Adaptation (QLORA). The results show that fine-tuning significantly improves performance, with LoRA and QLORA achieving the best results with far less computational cost, highlighting an efficient path for creating domain-specific LLMs.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Methodology Section -->
+    <section id="methodology" class="section">
+        <div class="container">
+            <h2 class="section-title">Fine-Tuning Strategies</h2>
+            <div class="methodology-intro">
+                <p><strong>Foundation Model:</strong> Llama 3</p>
+                <p><strong>Dataset:</strong> CyberMetric-10000, a cybersecurity Q&A dataset</p>
+            </div>
+            <div class="methodology-grid">
+                <div class="method-card">
+                    <h3>SFT (Supervised Fine-Tuning)</h3>
+                    <p>Updates all model parameters on a labeled dataset. It's effective but computationally expensive.</p>
+                    <div class="method-stats">
+                        <span class="stat">Full Parameter Update</span>
+                        <span class="stat">High Computational Cost</span>
+                    </div>
+                </div>
+                <div class="method-card highlight">
+                    <h3>LoRA (Low-Rank Adaptation)</h3>
+                    <p>A parameter-efficient method that freezes the original model weights and injects small, trainable "low-rank" matrices. This dramatically reduces memory and computational needs.</p>
+                    <div class="method-stats">
+                        <span class="stat">Parameter Efficient</span>
+                        <span class="stat">Reduced Memory</span>
+                    </div>
+                </div>
+                <div class="method-card highlight">
+                    <h3>QLORA (Quantized Low-Rank Adaptation)</h3>
+                    <p>Builds on LoRA by using quantized (4-bit) base model weights, further reducing the memory footprint and making it possible to fine-tune massive models on a single GPU.</p>
+                    <div class="method-stats">
+                        <span class="stat">4-bit Quantization</span>
+                        <span class="stat">Single GPU Training</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section id="results" class="section">
+        <div class="container">
+            <h2 class="section-title">Results and Evaluation</h2>
+            
+            <!-- Key Findings -->
+            <div class="results-summary">
+                <div class="result-card">
+                    <h3>Baseline Performance</h3>
+                    <div class="result-value">37%</div>
+                    <p>Llama 3 base model accuracy</p>
+                </div>
+                <div class="result-card">
+                    <h3>SFT Performance</h3>
+                    <div class="result-value">76.21%</div>
+                    <p>Supervised Fine-Tuning</p>
+                </div>
+                <div class="result-card best">
+                    <h3>LoRA Performance</h3>
+                    <div class="result-value">84.04%</div>
+                    <p>Low-Rank Adaptation</p>
+                </div>
+                <div class="result-card best">
+                    <h3>QLORA Performance</h3>
+                    <div class="result-value">84.29%</div>
+                    <p>Quantized LoRA</p>
+                </div>
+            </div>
+
+            <!-- Figure 1 -->
+            <div class="figure-container">
+                <h3>Figure 1: Training Loss Curves</h3>
+                <img src="./assets/figure1.png" alt="Training loss curves for all three fine-tuning methods." class="figure-img">
+                <p class="figure-caption">Training loss curves for SFT, LoRA, and QLORA showing convergence patterns and final performance.</p>
+            </div>
+
+            <!-- Table 2: Evaluation Results -->
+            <div class="table-container">
+                <h3>Table 1: Evaluation Results</h3>
+                <div class="table-wrapper">
+                    <table class="results-table">
+                        <thead>
+                            <tr>
+                                <th>Model</th>
+                                <th>Accuracy</th>
+                                <th>Training Time (hrs)</th>
+                                <th>Memory Usage (GB)</th>
+                                <th>Trainable Parameters</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Llama 3 (Base)</td>
+                                <td>0.3700</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>SFT</td>
+                                <td>0.7621</td>
+                                <td>12.5</td>
+                                <td>48.2</td>
+                                <td>8.03B</td>
+                            </tr>
+                            <tr class="highlight-row">
+                                <td>LoRA</td>
+                                <td>0.8404</td>
+                                <td>3.2</td>
+                                <td>16.1</td>
+                                <td>33.6M</td>
+                            </tr>
+                            <tr class="highlight-row">
+                                <td>QLORA</td>
+                                <td>0.8429</td>
+                                <td>2.8</td>
+                                <td>12.3</td>
+                                <td>33.6M</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Figure 2 -->
+            <div class="figure-container">
+                <h3>Figure 2: Example Query</h3>
+                <img src="./assets/figure2.png" alt="An example question showing the SFT model failing and LoRA/QLoRA succeeding." class="figure-img">
+                <p class="figure-caption">Comparison of model responses to a cybersecurity question, demonstrating the superior performance of parameter-efficient methods.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conclusion Section -->
+    <section id="conclusion" class="section">
+        <div class="container">
+            <h2 class="section-title">Conclusion and Future Work</h2>
+            <div class="conclusion-content">
+                <p>Fine-tuning is essential for adapting general-purpose LLMs to specialized domains like cybersecurity. Low-rank, parameter-efficient methods like LoRA and QLORA are not only more computationally efficient but can also lead to superior performance compared to full fine-tuning (SFT). These techniques offer an effective and accessible way to create expert models.</p>
+                
+                <div class="key-insights">
+                    <h3>Key Insights</h3>
+                    <ul>
+                        <li>Parameter-efficient methods (LoRA/QLORA) outperformed full fine-tuning</li>
+                        <li>QLORA achieved 84.29% accuracy with minimal computational overhead</li>
+                        <li>4-bit quantization did not compromise model quality</li>
+                        <li>Domain-specific fine-tuning dramatically improves LLM performance in cybersecurity</li>
+                    </ul>
+                </div>
+
+                <div class="future-work">
+                    <h3>Future Research Directions</h3>
+                    <ul>
+                        <li>Explore additional parameter-efficient fine-tuning techniques</li>
+                        <li>Investigate cross-domain transfer learning capabilities</li>
+                        <li>Develop specialized evaluation metrics for cybersecurity LLMs</li>
+                        <li>Scale experiments to larger models and datasets</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Yuan Huang, Shenzhen College of International Education</p>
+                <div class="footer-links">
+                    <a href="assets/paper.pdf" class="footer-link">Paper PDF</a>
+                    <a href="https://github.com/1000111-1000111/llm-cybersecurity" class="footer-link" target="_blank">GitHub Repository</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuToggle.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuToggle.classList.remove('active');
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>

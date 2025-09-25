@@ -1,0 +1,1 @@
+CUDA_VISIBLE_DEVICES=0 llamafactory-cli train llama3_full_eval.yaml

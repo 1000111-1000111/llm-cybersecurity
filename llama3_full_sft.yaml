@@ -1,0 +1,41 @@
+### model
+model_name_or_path: ../Meta-Llama-3-8B-Instruct/
+
+ddp_timeout: 180000000
+deepspeed: ds_z2_offload_config.json
+
+### method
+stage: sft
+do_train: true
+finetuning_type: full
+
+### dataset
+dataset: ds
+template: llama3
+cutoff_len: 1600
+max_samples: 1000000
+overwrite_cache: true
+preprocessing_num_workers: 16
+
+### output
+output_dir: saves/full_sft
+logging_steps: 1
+save_steps: 6126
+plot_loss: true
+overwrite_output_dir: true
+
+### train
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 2
+learning_rate: 0.000007
+num_train_epochs: 3.0
+lr_scheduler_type: cosine
+warmup_ratio: 0.1
+fp16: true
+save_only_model: 1
+
+### eval
+train_size: 0.8
+per_device_eval_batch_size: 1
+evaluation_strategy: steps
+eval_steps: 10000

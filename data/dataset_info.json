@@ -1,0 +1,9 @@
+{
+  "ds": {
+    "file_name": "dataset.json",
+    "columns": {
+      "prompt": "question",
+      "response": "answer"
+    }
+  }
+}

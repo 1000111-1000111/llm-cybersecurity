@@ -1,0 +1,1 @@
+CUDA_VISIBLE_DEVICES=0 llamafactory-cli export llama3_lora_merge.yaml
